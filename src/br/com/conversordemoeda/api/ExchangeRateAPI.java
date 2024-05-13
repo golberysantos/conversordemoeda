@@ -5,7 +5,6 @@ import java.io.IOException;
 public class ExchangeRateAPI {
 
 	private String yourAPIKey;
-
 	private String baseCode;
 
 	public ExchangeRateAPI(String baseCode, String yourAPIKey) {
