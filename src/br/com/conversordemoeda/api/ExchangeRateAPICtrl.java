@@ -14,9 +14,14 @@ public class ExchangeRateAPICtrl implements MyGson{
 		ExchangeRateAPI erapi = new ExchangeRateAPI(base_code, suaChaveAPI);		
 		System.out.println("Exchange Rate: " + erapi.rate());		
 		setEjson(erapi.rate());
-		ExchangeRateAPIModel eram = new ExchangeRateAPIModel();
-		eram.setResult(erar.result());
-		System.out.println(eram.getConversion_rates());
+		desserializar();
+		ExchangeRateAPIModel eram = new ExchangeRateAPIModel(getErar());
+		
+		System.out.println("Conosdfnoa"+eram.getConversion_rates());
+		
+		Object objCR = (Object) eram.getConversion_rates();
+		
+		
 		
 		filtrar();
 		return calcular();
@@ -44,8 +49,7 @@ public class ExchangeRateAPICtrl implements MyGson{
 			 * Gson gson = new GsonBuilder()
 			 * .setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE) .create();
 			 */
-			Gson gson = new Gson();
-			erar = gson.fromJson(getEjson(), ExchangeRateAPIRegistro.class);
+			Gson gson = new Gson();			
 			setErar(gson.fromJson(getEjson(), ExchangeRateAPIRegistro.class));
 			
 		} catch (NumberFormatException e) {

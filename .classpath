@@ -7,5 +7,10 @@
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="C:/Program Files (x86)/Golbery/www/eclipseworkspace/ConversorDeMoeda/jars/gson-2.11.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/SENAC/Downloads/jsonp_1.1_api.zip">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
