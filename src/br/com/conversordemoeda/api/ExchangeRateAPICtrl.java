@@ -1,7 +1,6 @@
 package br.com.conversordemoeda.api;
 
 import java.io.IOException;
-import java.time.chrono.Era;
 
 import com.google.gson.Gson;
 

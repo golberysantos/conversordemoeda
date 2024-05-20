@@ -1,10 +1,5 @@
 package br.com.conversordemoeda.api;
 
-import java.io.IOException;
-
-import com.google.gson.Gson;
-import com.google.gson.annotations.SerializedName;
-
 public class ExchangeRateAPIModel{
 	
 	private String result;	
