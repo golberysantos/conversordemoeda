@@ -27,19 +27,24 @@ public class ExchangeRateAPITela {
 
 			switch (op) {
 			case "1":
-				eram.converter(ExchangeRateAPIModel.ARR_BASE_CODE[1], valor, ExchangeRateAPIModel.ARR_BASE_CODE[2], suaChaveAPI());
+				eram.converter(ExchangeRateAPIModel.ARR_BASE_CODE[1], valor, ExchangeRateAPIModel.ARR_BASE_CODE[2],
+						suaChaveAPI());
 				break;
 			case "2":
-				eram.converter(ExchangeRateAPIModel.ARR_BASE_CODE[2], valor, ExchangeRateAPIModel.ARR_BASE_CODE[1], suaChaveAPI());
+				eram.converter(ExchangeRateAPIModel.ARR_BASE_CODE[2], valor, ExchangeRateAPIModel.ARR_BASE_CODE[1],
+						suaChaveAPI());
 				break;
 			case "3":
-				eram.converter(ExchangeRateAPIModel.ARR_BASE_CODE[1], valor, ExchangeRateAPIModel.ARR_BASE_CODE[3], suaChaveAPI());
+				eram.converter(ExchangeRateAPIModel.ARR_BASE_CODE[1], valor, ExchangeRateAPIModel.ARR_BASE_CODE[3],
+						suaChaveAPI());
 				break;
 			case "4":
-				eram.converter(ExchangeRateAPIModel.ARR_BASE_CODE[3], valor, ExchangeRateAPIModel.ARR_BASE_CODE[1], suaChaveAPI());
+				eram.converter(ExchangeRateAPIModel.ARR_BASE_CODE[3], valor, ExchangeRateAPIModel.ARR_BASE_CODE[1],
+						suaChaveAPI());
 				break;
 			case "5":
-				eram.converter(ExchangeRateAPIModel.ARR_BASE_CODE[1], valor, ExchangeRateAPIModel.ARR_BASE_CODE[4], suaChaveAPI());
+				eram.converter(ExchangeRateAPIModel.ARR_BASE_CODE[1], valor, ExchangeRateAPIModel.ARR_BASE_CODE[4],
+						suaChaveAPI());
 				break;
 
 			default:

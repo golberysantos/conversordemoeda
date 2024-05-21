@@ -1,19 +1,20 @@
 package br.com.conversordemoeda.api;
 
-public class ExchangeRateAPIModel{
-	
-	private String result;	
+import com.google.gson.internal.LinkedTreeMap;
+
+public class ExchangeRateAPIModel {
+
+	private String result;
 	private String documentation;
 	private String terms_of_use;
 	private String time_last_update_unix;
 	private String time_last_update_utc;
-	private String time_next_update_unix; 
-	private String time_next_update_utc; 
-	private String base_code;	
-	private Object conversion_rates;	
+	private String time_next_update_unix;
+	private String time_next_update_utc;
+	private String base_code;
+	private LinkedTreeMap<String, Object> conversion_rates;
 	private String json;
 	static final String[] ARR_BASE_CODE = { "", "USD", "ARS", "BRL", "COP" };
-	
 
 	public ExchangeRateAPIModel() {
 		// TODO Auto-generated constructor stub
@@ -28,11 +29,8 @@ public class ExchangeRateAPIModel{
 		this.time_next_update_unix = erar.time_next_update_unix();
 		this.time_next_update_utc = erar.time_next_update_utc();
 		this.base_code = erar.base_code();
-		this.conversion_rates = erar.conversion_rates();			
+		this.conversion_rates = erar.conversion_rates();
 	}
-	
-	
-	
 
 	public String getResult() {
 		return result;
@@ -40,7 +38,7 @@ public class ExchangeRateAPIModel{
 
 	public void setResult(String result) {
 		this.result = result;
-	}	
+	}
 
 	public String getDocumentation() {
 		return documentation;
@@ -90,7 +88,6 @@ public class ExchangeRateAPIModel{
 		this.time_next_update_utc = time_next_update_utc;
 	}
 
-
 	public String getBase_code() {
 		return base_code;
 	}
@@ -99,14 +96,14 @@ public class ExchangeRateAPIModel{
 		this.base_code = base_code;
 	}
 
-	public Object getConversion_rates() {
+	public LinkedTreeMap<String, Object>  getConversion_rates() {
 		return conversion_rates;
 	}
 
-	public void setConversion_rates(Object conversion_rates) {
+	public void setConversion_rates(LinkedTreeMap<String, Object>  conversion_rates) {
 		this.conversion_rates = conversion_rates;
 	}
-	
+
 	public String[] getARR_BASE_CODE() {
 		return ARR_BASE_CODE;
 	}
@@ -114,7 +111,7 @@ public class ExchangeRateAPIModel{
 	public String getARR_BASE_CODE(int indexbase_code) {
 		return ARR_BASE_CODE[indexbase_code];
 	}
-	
+
 	public String getJson() {
 		return json;
 	}
@@ -122,5 +119,5 @@ public class ExchangeRateAPIModel{
 	public void setJson(String json) {
 		this.json = json;
 	}
-	
+
 }

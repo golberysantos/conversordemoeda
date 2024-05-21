@@ -1,41 +1,38 @@
 package br.com.conversordemoeda.api;
 
 import java.io.IOException;
-
 import com.google.gson.Gson;
 
-public class ExchangeRateAPICtrl implements MyGson{
-	
+
+public class ExchangeRateAPICtrl implements MyGson {
+
 	private ExchangeRateAPIRegistro erar;
 	private String Ejson;
-	
-	public float converter(String base_code, float valor, String base_code2, String suaChaveAPI)
+	private String codeConverter;
+	private Float valor;
+
+	public float converter(String baseCode, float valor, String codeConverter, String suaChaveAPI)
 			throws IOException, InterruptedException {
-		ExchangeRateAPI erapi = new ExchangeRateAPI(base_code, suaChaveAPI);		
-		System.out.println("Exchange Rate: " + erapi.rate());		
+		this.codeConverter = codeConverter;
+		this.valor = valor;
+		
+		ExchangeRateAPI erapi = new ExchangeRateAPI(baseCode, suaChaveAPI);
+		System.out.println("Exchange Rate: " + erapi.rate());
 		setEjson(erapi.rate());
 		desserializar();
 		ExchangeRateAPIModel eram = new ExchangeRateAPIModel(getErar());
 		
-		System.out.println("Conosdfnoa"+eram.getConversion_rates());
-		
-		Object objCR = (Object) eram.getConversion_rates();
-		
-		
-		
-		filtrar();
+		System.out.println("baseCode: "+baseCode+" | valor: "+valor+"codeConverter: "+codeConverter);
+		System.out.println(">>> resultado: " + eram.getConversion_rates().get(codeConverter));
+		>>>>>> aqui..
 		return calcular();
 	}
 
-	private void filtrar() {
-		System.out.println(">>>>> ");
-	}
-
 	private float calcular() {
-
+		
 		return 0;
 	}
-	
+
 	@Override
 	public String serializar() {
 		// TODO Auto-generated method stub
@@ -49,9 +46,9 @@ public class ExchangeRateAPICtrl implements MyGson{
 			 * Gson gson = new GsonBuilder()
 			 * .setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE) .create();
 			 */
-			Gson gson = new Gson();			
+			Gson gson = new Gson();
 			setErar(gson.fromJson(getEjson(), ExchangeRateAPIRegistro.class));
-			
+
 		} catch (NumberFormatException e) {
 			System.out.println("Aconteceu um erro: ");
 			System.out.println(e.getMessage());
@@ -61,7 +58,7 @@ public class ExchangeRateAPICtrl implements MyGson{
 			System.out.println(
 					"Algo de errado não está certo :| na hora de desserializar o Json. \n ERRO: " + e.getMessage());
 		}
-				
+
 	}
 
 	public ExchangeRateAPIRegistro getErar() {
@@ -79,5 +76,7 @@ public class ExchangeRateAPICtrl implements MyGson{
 	public void setEjson(String ejson) {
 		Ejson = ejson;
 	}
+
+
 
 }
