@@ -3,20 +3,19 @@ package br.com.conversordemoeda.api;
 import java.io.StringReader;
 
 import javax.json.Json;
-
 import javax.json.stream.JsonParser;
 
 public class JSONProcessing {
 
 	/**
-	 * Reading JSON Data Using a Parser
-	 * Fonte: https://docs.oracle.com/javaee/7/tutorial/jsonp004.htm
+	 * Reading JSON Data Using a Parser Fonte:
+	 * https://docs.oracle.com/javaee/7/tutorial/jsonp004.htm
+	 *
 	 * @param chave
 	 * @param jsonData
 	 */
 	public static void pegarValorPorChave(String chave, String jsonData) {
-		
-		
+
 		JsonParser parser = Json.createParser(new StringReader(jsonData));
 		while (parser.hasNext()) {
 			JsonParser.Event event = parser.next();

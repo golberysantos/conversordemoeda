@@ -1,36 +1,34 @@
 package br.com.conversordemoeda.api;
 
 import java.io.IOException;
-import com.google.gson.Gson;
 
+import com.google.gson.Gson;
 
 public class ExchangeRateAPICtrl implements MyGson {
 
 	private ExchangeRateAPIRegistro erar;
 	private String Ejson;
-	private String codeConverter;
-	private Float valor;
 
-	public float converter(String baseCode, float valor, String codeConverter, String suaChaveAPI)
+	public Double converter(String baseCode, Double valor, String codeConverter, String suaChaveAPI)
 			throws IOException, InterruptedException {
-		this.codeConverter = codeConverter;
-		this.valor = valor;
-		
+		Double vlrRate = 0.0;
+
 		ExchangeRateAPI erapi = new ExchangeRateAPI(baseCode, suaChaveAPI);
 		System.out.println("Exchange Rate: " + erapi.rate());
 		setEjson(erapi.rate());
 		desserializar();
 		ExchangeRateAPIModel eram = new ExchangeRateAPIModel(getErar());
-		
-		System.out.println("baseCode: "+baseCode+" | valor: "+valor+"codeConverter: "+codeConverter);
+
+		System.out.println("baseCode: " + baseCode + " | valor: " + valor + "codeConverter: " + codeConverter);
 		System.out.println(">>> resultado: " + eram.getConversion_rates().get(codeConverter));
-		>>>>>> aqui..
-		return calcular();
+				
+		vlrRate = (Double) eram.getConversion_rates().get(codeConverter);
+		return calcular(valor, vlrRate);
 	}
 
-	private float calcular() {
-		
-		return 0;
+	private Double calcular(Double valor, Double vlrRate) {
+
+		return valor * vlrRate;
 	}
 
 	@Override
@@ -76,7 +74,5 @@ public class ExchangeRateAPICtrl implements MyGson {
 	public void setEjson(String ejson) {
 		Ejson = ejson;
 	}
-
-
 
 }

@@ -9,8 +9,8 @@ public class ExchangeRateAPITela {
 	public void exibir() throws IOException, InterruptedException {
 		ExchangeRateAPICtrl eram = new ExchangeRateAPICtrl();
 		String op = "";
-		float valor = 0;
-
+		Double valor = 0.0;
+		Double vlrConvertido = 0.0;
 		do {
 			System.out.println(") \nBEM VINDO AO CONVERSOR DE MOEDA =]");
 			System.out.println("1) Dólar >> Peso argentino");
@@ -23,33 +23,35 @@ public class ExchangeRateAPITela {
 			System.out.println("Escolha uma opção válida: ");
 			op = ler.nextLine();
 			System.out.println("Informe o valor para converter: ");
-			valor = ler.nextFloat();
+			valor = ler.nextDouble();
 
 			switch (op) {
 			case "1":
-				eram.converter(ExchangeRateAPIModel.ARR_BASE_CODE[1], valor, ExchangeRateAPIModel.ARR_BASE_CODE[2],
+				vlrConvertido = eram.converter(ExchangeRateAPIModel.ARR_BASE_CODE[1], valor, ExchangeRateAPIModel.ARR_BASE_CODE[2],
 						suaChaveAPI());
 				break;
 			case "2":
-				eram.converter(ExchangeRateAPIModel.ARR_BASE_CODE[2], valor, ExchangeRateAPIModel.ARR_BASE_CODE[1],
+				vlrConvertido = eram.converter(ExchangeRateAPIModel.ARR_BASE_CODE[2], valor, ExchangeRateAPIModel.ARR_BASE_CODE[1],
 						suaChaveAPI());
 				break;
 			case "3":
-				eram.converter(ExchangeRateAPIModel.ARR_BASE_CODE[1], valor, ExchangeRateAPIModel.ARR_BASE_CODE[3],
+				vlrConvertido = eram.converter(ExchangeRateAPIModel.ARR_BASE_CODE[1], valor, ExchangeRateAPIModel.ARR_BASE_CODE[3],
 						suaChaveAPI());
 				break;
 			case "4":
-				eram.converter(ExchangeRateAPIModel.ARR_BASE_CODE[3], valor, ExchangeRateAPIModel.ARR_BASE_CODE[1],
+				vlrConvertido = eram.converter(ExchangeRateAPIModel.ARR_BASE_CODE[3], valor, ExchangeRateAPIModel.ARR_BASE_CODE[1],
 						suaChaveAPI());
 				break;
 			case "5":
-				eram.converter(ExchangeRateAPIModel.ARR_BASE_CODE[1], valor, ExchangeRateAPIModel.ARR_BASE_CODE[4],
+				vlrConvertido = eram.converter(ExchangeRateAPIModel.ARR_BASE_CODE[1], valor, ExchangeRateAPIModel.ARR_BASE_CODE[4],
 						suaChaveAPI());
 				break;
 
 			default:
 				break;
 			}
+			
+			System.out.println("RAULDADO: "+vlrConvertido);
 
 		} while (op == "7");
 

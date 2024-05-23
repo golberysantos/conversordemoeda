@@ -6,7 +6,7 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry excluding="main/java/javax/json/spi/|main/java/javax/json/|main/java/javax/|main/java/|main/" kind="src" path="src"/>
-	<classpathentry kind="lib" path="C:/Program Files (x86)/Golbery/www/eclipseworkspace/ConversorDeMoeda/jars/gson-2.11.0.jar"/>
 	<classpathentry kind="lib" path="jars/jsonp_1.1_api.jar" sourcepath="jars/jsonp_1.1_api.jar"/>
+	<classpathentry kind="lib" path="jars/gson-2.11.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

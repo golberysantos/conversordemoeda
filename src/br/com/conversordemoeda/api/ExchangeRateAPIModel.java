@@ -96,11 +96,11 @@ public class ExchangeRateAPIModel {
 		this.base_code = base_code;
 	}
 
-	public LinkedTreeMap<String, Object>  getConversion_rates() {
+	public LinkedTreeMap<String, Object> getConversion_rates() {
 		return conversion_rates;
 	}
 
-	public void setConversion_rates(LinkedTreeMap<String, Object>  conversion_rates) {
+	public void setConversion_rates(LinkedTreeMap<String, Object> conversion_rates) {
 		this.conversion_rates = conversion_rates;
 	}
 
