@@ -28,6 +28,6 @@ public interface MyGson {
 	 * @param Json
 	 * @return
 	 */
-	void desserializar();
+	void desserializar(String json);
 
 }

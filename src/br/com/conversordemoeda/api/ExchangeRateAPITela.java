@@ -51,7 +51,7 @@ public class ExchangeRateAPITela {
 				break;
 			}
 			
-			System.out.println("RAULDADO: "+vlrConvertido);
+			System.out.println("RASULTADO: "+vlrConvertido);
 
 		} while (op == "7");
 

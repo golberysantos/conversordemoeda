@@ -7,28 +7,26 @@ import com.google.gson.Gson;
 public class ExchangeRateAPICtrl implements MyGson {
 
 	private ExchangeRateAPIRegistro erar;
-	private String Ejson;
+	
 
-	public Double converter(String baseCode, Double valor, String codeConverter, String suaChaveAPI)
+	public Double converter(String baseCode, Double vlrAConverter, String baseCodeAConverter, String suaChaveAPI)
 			throws IOException, InterruptedException {
-		Double vlrRate = 0.0;
-
+		Double cotacaoMoeda = 0.0, cotacaoMoedaAConverter=0.0;  
 		ExchangeRateAPI erapi = new ExchangeRateAPI(baseCode, suaChaveAPI);
-		System.out.println("Exchange Rate: " + erapi.rate());
-		setEjson(erapi.rate());
-		desserializar();
+		desserializar(erapi.rate());		
 		ExchangeRateAPIModel eram = new ExchangeRateAPIModel(getErar());
+		cotacaoMoeda = (Double) eram.getConversion_rates().get(baseCode);
+		cotacaoMoedaAConverter = (Double) eram.getConversion_rates().get(baseCodeAConverter);
 
-		System.out.println("baseCode: " + baseCode + " | valor: " + valor + "codeConverter: " + codeConverter);
-		System.out.println(">>> resultado: " + eram.getConversion_rates().get(codeConverter));
-				
-		vlrRate = (Double) eram.getConversion_rates().get(codeConverter);
-		return calcular(valor, vlrRate);
+		System.out.println("\n");
+		System.out.println("Cotacao moeda["+ baseCode +"]: " + cotacaoMoeda);
+		System.out.println("Cotacao moeda a converter["+ baseCodeAConverter+"]: "+cotacaoMoedaAConverter);		
+		System.out.println("Valor a converter: "+vlrAConverter);		
+		return calcular(vlrAConverter, cotacaoMoeda, cotacaoMoedaAConverter);
 	}
 
-	private Double calcular(Double valor, Double vlrRate) {
-
-		return valor * vlrRate;
+	private Double calcular(Double vlrAConverter, Double cotacaoMoeda, Double cotacaoMoedaAConverter) {
+		return  (vlrAConverter*cotacaoMoedaAConverter)/cotacaoMoeda;
 	}
 
 	@Override
@@ -38,14 +36,14 @@ public class ExchangeRateAPICtrl implements MyGson {
 	}
 
 	@Override
-	public void desserializar() {
+	public void desserializar(String ejson) {
 		try {
 			/*
 			 * Gson gson = new GsonBuilder()
 			 * .setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE) .create();
 			 */
 			Gson gson = new Gson();
-			setErar(gson.fromJson(getEjson(), ExchangeRateAPIRegistro.class));
+			setErar(gson.fromJson(ejson, ExchangeRateAPIRegistro.class));
 
 		} catch (NumberFormatException e) {
 			System.out.println("Aconteceu um erro: ");
@@ -67,12 +65,5 @@ public class ExchangeRateAPICtrl implements MyGson {
 		this.erar = erar;
 	}
 
-	public String getEjson() {
-		return Ejson;
-	}
-
-	public void setEjson(String ejson) {
-		Ejson = ejson;
-	}
 
 }
