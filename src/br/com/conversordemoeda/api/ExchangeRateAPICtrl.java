@@ -7,22 +7,26 @@ import com.google.gson.Gson;
 public class ExchangeRateAPICtrl implements MyGson {
 
 	private ExchangeRateAPIRegistro erar;
-	
+
 
 	public Double converter(String baseCode, Double vlrAConverter, String baseCodeAConverter, String suaChaveAPI)
 			throws IOException, InterruptedException {
-		Double cotacaoMoeda = 0.0, cotacaoMoedaAConverter=0.0;  
+		System.out.println("Processando...");
+		Double cotacaoMoeda = 0.0, cotacaoMoedaAConverter=0.0, vlrConvertido=0.0;		
 		ExchangeRateAPI erapi = new ExchangeRateAPI(baseCode, suaChaveAPI);
-		desserializar(erapi.rate());		
+		desserializar(erapi.rate());
 		ExchangeRateAPIModel eram = new ExchangeRateAPIModel(getErar());
 		cotacaoMoeda = (Double) eram.getConversion_rates().get(baseCode);
 		cotacaoMoedaAConverter = (Double) eram.getConversion_rates().get(baseCodeAConverter);
+		vlrConvertido = calcular(vlrAConverter, cotacaoMoeda, cotacaoMoedaAConverter);
 
 		System.out.println("\n");
-		System.out.println("Cotacao moeda["+ baseCode +"]: " + cotacaoMoeda);
-		System.out.println("Cotacao moeda a converter["+ baseCodeAConverter+"]: "+cotacaoMoedaAConverter);		
-		System.out.println("Valor a converter: "+vlrAConverter);		
-		return calcular(vlrAConverter, cotacaoMoeda, cotacaoMoedaAConverter);
+		System.out.println("-- Conversão realizada!!! --");
+		System.out.println("  Cotacao moeda["+ baseCode +"]: " + cotacaoMoeda);
+		System.out.println("  Cotacao moeda a converter["+ baseCodeAConverter+"]: "+cotacaoMoedaAConverter);
+		System.out.println("  Valor a converter: "+vlrAConverter);
+		System.out.println("  Resultado["+baseCodeAConverter+"]: "+vlrConvertido+"\n");
+		return vlrConvertido;
 	}
 
 	private Double calcular(Double vlrAConverter, Double cotacaoMoeda, Double cotacaoMoedaAConverter) {

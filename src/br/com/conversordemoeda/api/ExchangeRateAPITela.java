@@ -7,12 +7,16 @@ public class ExchangeRateAPITela {
 	Scanner ler = new Scanner(System.in);
 
 	public void exibir() throws IOException, InterruptedException {
-		ExchangeRateAPICtrl eram = new ExchangeRateAPICtrl();
+
+		ExchangeRateAPICtrl eram = null;
 		String op = "";
-		Double valor = 0.0;
-		Double vlrConvertido = 0.0;
-		do {
-			System.out.println(") \nBEM VINDO AO CONVERSOR DE MOEDA =]");
+		while (!op.equals("7")) {
+			eram = new ExchangeRateAPICtrl();
+						
+			Double valor = 0.0;
+			Double vlrConvertido = 0.0;
+			
+			System.out.println("Escolha uma das opção: ");
 			System.out.println("1) Dólar >> Peso argentino");
 			System.out.println("2) Peso argentino >> Dolar");
 			System.out.println("3) Dólar >> Real brasileiro");
@@ -20,11 +24,11 @@ public class ExchangeRateAPITela {
 			System.out.println("5) Dólar >> Peso colombiano");
 			System.out.println("6) Peso colombiano >> Dólar");
 			System.out.println("7) Sair");
-			System.out.println("Escolha uma opção válida: ");
-			op = ler.nextLine();
+			op = ler.next();
+			if (op.equals("7")) break; 
 			System.out.println("Informe o valor para converter: ");
 			valor = ler.nextDouble();
-
+			
 			switch (op) {
 			case "1":
 				vlrConvertido = eram.converter(ExchangeRateAPIModel.ARR_BASE_CODE[1], valor, ExchangeRateAPIModel.ARR_BASE_CODE[2],
@@ -46,25 +50,29 @@ public class ExchangeRateAPITela {
 				vlrConvertido = eram.converter(ExchangeRateAPIModel.ARR_BASE_CODE[1], valor, ExchangeRateAPIModel.ARR_BASE_CODE[4],
 						suaChaveAPI());
 				break;
+			case "6":
+				vlrConvertido = eram.converter(ExchangeRateAPIModel.ARR_BASE_CODE[4], valor, ExchangeRateAPIModel.ARR_BASE_CODE[1],
+						suaChaveAPI());
+				break;
 
 			default:
+				System.out.println("\n Você escolheu uma opção inválida. Por favor, tente novamente.\n");
 				break;
-			}
-			
-			System.out.println("RASULTADO: "+vlrConvertido);
+			}			
 
-		} while (op == "7");
+		} 
 
 		ler.close();
+		System.out.println("\n   PROGRAMA FINALIZADO.");
 	}
 
-	private String suaChaveAPI() {
-		APIInfo info = new APIInfo();
-		if (info.getChaveapi().equals("")) {
-			System.out.println("INFORME A CHAVE DA API: ");
-			String chave = ler.next();
-			info.setChaveapi(chave);
+	private String suaChaveAPI() {		
+		if (APIInfo.chaveapi.equals("")) {
+			System.out.println("INFORME A CHAVE DA API: ");			
+			APIInfo.chaveapi = ler.next();
 		}
-		return info.getChaveapi();
+		return APIInfo.chaveapi;
 	}
+	
+
 }

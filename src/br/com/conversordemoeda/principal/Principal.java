@@ -8,11 +8,12 @@ public class Principal {
 
 	public static void main(String[] args) throws IOException, InterruptedException {
 		System.out.println("\n");
-		System.out.println("╔═══════════════════════════════╗");
-		System.out.println("║ CONVERSOR DE MOEDA            ║");
-		System.out.println("║ API: Exchange Rate API        ║");
-		System.out.println("║ BY: Golbery                   ║");
-		System.out.println("╚═══════════════════════════════╝");
+		System.out.println("╔═════════════════════════════════╗");
+		System.out.println("║ BEM-VINDO AO CONVERSOR DE MOEDA ║");
+		System.out.println("║ API: Exchange Rate API          ║");
+		System.out.println("║ CHALLENGE: Alura                ║");
+		System.out.println("║ BY: Golbery                     ║");
+		System.out.println("╚═════════════════════════════════╝");
 		System.out.println("");
 		br.com.conversordemoeda.api.ExchangeRateAPITela exch = new ExchangeRateAPITela();
 		exch.exibir();
